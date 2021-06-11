@@ -1,0 +1,30 @@
+body {
+  margin: 0;
+  font-family: 'Work Sans';
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+.main-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 12rem;
+}
+.button-wrapper {
+  display: flex;
+  justify-content: center;
+}
+.msg-div {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+.faliure-msg {
+  color: red;
+}
+.success-msg {
+  color: green;
+}
