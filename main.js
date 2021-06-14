@@ -3,7 +3,7 @@ const path = require('path');
 
 const { spawn } = require('child_process');
 const startServer = () => {
-  const ls = spawn('./server/my-project');
+  const ls = spawn('./server/bin/my-project');
   ls.stdout.on('data', (data) => {
     console.log(`stdout: ${data}`);
   });
