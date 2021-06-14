@@ -1,11 +1,9 @@
 const { app, BrowserWindow } = require('electron');
 const path = require('path');
-const exec = require('child_process').exec;
 
 const { spawn } = require('child_process');
-
 const startServer = () => {
-  const ls = spawn('./backend/scripts/run.sh', ['-b']);
+  const ls = spawn('./server/my-project');
   ls.stdout.on('data', (data) => {
     console.log(`stdout: ${data}`);
   });
