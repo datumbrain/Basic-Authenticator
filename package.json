@@ -1,7 +1,7 @@
 {
-  "name": "basic-user-authenticator",
+  "name": "electronjs-go-chi-basic-auth-starter",
   "version": "1.0.0",
-  "description": "Hello World",
+  "description": "Auth authenticator using go-chi and electronJS",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
