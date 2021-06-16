@@ -3,7 +3,7 @@ const path = require('path');
 
 const { spawn } = require('child_process');
 const startServer = () => {
-  const ls = spawn('./scripts/build.sh');
+  const ls = spawn('./server/binary');
   ls.stdout.on('data', (data) => {
     console.log(`stdout: ${data}`);
   });
@@ -27,7 +27,6 @@ function createWindow() {
 app.whenReady().then(() => {
   createWindow();
   startServer();
-  console.log('PROCESS', process.env.REACT_APP_API_URL);
   app.on('activate', function () {
     if (BrowserWindow.getAllWindows().length === 0) createWindow();
   });
