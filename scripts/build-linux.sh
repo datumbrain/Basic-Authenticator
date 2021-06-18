@@ -1,0 +1,1 @@
+npx @electron-forge/cli make

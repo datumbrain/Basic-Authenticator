@@ -3,10 +3,14 @@
   "version": "1.0.0",
   "description": "Auth authenticator using go-chi and electronJS",
   "main": "main.js",
+  "homepage": "/",
   "scripts": {
-    "start": "electron .",
+    "start": "electron-forge start",
     "watch": "webpack --config webpack.common.js --watch",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "package": "electron-forge package",
+    "make-linux": "npx @electron-forge/cli make --platform linux --targets deb",
+    "make-mac": "npx @electron-forge/cli make --platform darwin"
   },
   "author": "",
   "license": "ISC",
@@ -14,6 +18,11 @@
     "@babel/core": "^7.14.5",
     "@babel/preset-env": "^7.14.5",
     "@babel/preset-react": "^7.14.5",
+    "@electron-forge/cli": "^6.0.0-beta.57",
+    "@electron-forge/maker-deb": "^6.0.0-beta.57",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.57",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.57",
+    "@electron-forge/maker-zip": "^6.0.0-beta.57",
     "axios": "^0.21.1",
     "babel-loader": "^8.2.2",
     "css-loader": "^5.2.6",
@@ -27,7 +36,19 @@
     "webpack-cli": "^4.7.2"
   },
   "dependencies": {
+    "electron-squirrel-startup": "^1.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        }
+      ]
+    }
   }
 }

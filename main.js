@@ -1,9 +1,10 @@
 const { app, BrowserWindow } = require('electron');
 const path = require('path');
-
-const { spawn } = require('child_process');
+const url = require('url');
+const myexefilepath = path.join(__dirname, 'binary');
+const { spawn, exec } = require('child_process');
 const startServer = () => {
-  const ls = spawn('./server/binary');
+  const ls = exec(myexefilepath);
   ls.stdout.on('data', (data) => {
     console.log(`stdout: ${data}`);
   });
@@ -11,7 +12,6 @@ const startServer = () => {
     console.error(`stderr: ${data}`);
   });
 };
-
 function createWindow() {
   const mainWindow = new BrowserWindow({
     width: 800,
@@ -21,9 +21,14 @@ function createWindow() {
       preload: path.join(__dirname, 'preload.js'),
     },
   });
-  mainWindow.loadFile('index.html');
+  mainWindow.loadURL(
+    url.format({
+      pathname: path.join(__dirname, 'index.html'),
+      protocol: 'file:',
+      slashes: true,
+    })
+  );
 }
-
 app.whenReady().then(() => {
   createWindow();
   startServer();
@@ -31,7 +36,6 @@ app.whenReady().then(() => {
     if (BrowserWindow.getAllWindows().length === 0) createWindow();
   });
 });
-
 app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') app.quit();
 });

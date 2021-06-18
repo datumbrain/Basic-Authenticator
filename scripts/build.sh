@@ -1,1 +1,0 @@
-cd server && go build && ./my-project
