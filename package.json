@@ -8,9 +8,7 @@
     "start": "electron-forge start",
     "watch": "webpack --config webpack.common.js --watch",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "package": "electron-forge package",
-    "make-linux": "npx @electron-forge/cli make --platform linux --targets deb",
-    "make-mac": "npx @electron-forge/cli make --platform darwin"
+    "make": "electron-forge make"
   },
   "author": "",
   "license": "ISC",
@@ -22,7 +20,7 @@
     "@electron-forge/maker-deb": "^6.0.0-beta.57",
     "@electron-forge/maker-rpm": "^6.0.0-beta.57",
     "@electron-forge/maker-squirrel": "^6.0.0-beta.57",
-    "@electron-forge/maker-zip": "^6.0.0-beta.57",
+    "@electron-forge/maker-wix": "^6.0.0-beta.57",
     "axios": "^0.21.1",
     "babel-loader": "^8.2.2",
     "css-loader": "^5.2.6",
@@ -46,6 +44,14 @@
       "makers": [
         {
           "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-dmg",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-wix",
           "config": {}
         }
       ]

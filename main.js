@@ -1,10 +1,18 @@
 const { app, BrowserWindow } = require('electron');
 const path = require('path');
 const url = require('url');
-const myexefilepath = path.join(__dirname, 'binary');
-const { spawn, exec } = require('child_process');
+const binaryPath = path.join(__dirname, '/server/binary-');
+const { exec } = require('child_process');
 const startServer = () => {
-  const ls = exec(myexefilepath);
+  const ls = exec(
+    process.platform === 'linux'
+      ? binaryPath + 'linux'
+      : process.platform === 'darwin'
+      ? binaryPath + 'mac'
+      : process.platform === 'win32'
+      ? binaryPath + 'win'
+      : ''
+  );
   ls.stdout.on('data', (data) => {
     console.log(`stdout: ${data}`);
   });
@@ -36,6 +44,12 @@ app.whenReady().then(() => {
     if (BrowserWindow.getAllWindows().length === 0) createWindow();
   });
 });
+
+app.on('before-quit', function () {
+  exec('kill -9 $(lsof -i:6969 -t) 2> /dev/null');
+  console.log('quitting');
+});
+
 app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') app.quit();
 });
